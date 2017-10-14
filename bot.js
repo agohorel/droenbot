@@ -7,14 +7,20 @@ bot.on("ready", () =>{
 });
 
 bot.on("message", (message) =>{
+	// slice out arguments from command string
+	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+	// shift command out of args array, leaving just the command. toLowerCase so commands are case insensitive.
+	const command = args.shift().toLowerCase();
+
 	if(!message.content.startsWith(config.prefix) || message.author.bot){
 		return;
 	}
 		
-	if(message.content.startsWith(config.prefix + "ding")){
-		message.channel.send("dong");
+	if(command === "ping"){
+		console.log(args);
+		message.channel.send("pong");
 	} else {
-		if(message.content.startsWith(config.prefix + "derp")){
+		if(command === "derp"){
 			message.channel.send("https://imgur.com/a/UV6L7");
 		}	
 	}
