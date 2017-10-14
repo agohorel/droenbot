@@ -1,23 +1,23 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
-const prefix = "!";
+const config = require("./config.json");
 
 bot.on("ready", () =>{
 	console.log("droenbot is live!");
 });
 
 bot.on("message", (message) =>{
-	if(!message.content.startsWith(prefix)){
+	if(!message.content.startsWith(config.prefix) || message.author.bot){
 		return;
 	}
 		
-	if(message.content.startsWith(prefix + "ding")){
+	if(message.content.startsWith(config.prefix + "ding")){
 		message.channel.send("dong");
 	} else {
-		if(message.content.startsWith(prefix + "derp")){
+		if(message.content.startsWith(config.prefix + "derp")){
 			message.channel.send("https://imgur.com/a/UV6L7");
 		}	
 	}
 });
 
-bot.login("MzY3ODk0MDUyMjQ4NzQ4MDMy.DMCDlw.5Ix5YX5ZQwK1QKBwBvmXKuryyUg");
+bot.login(config.token);
