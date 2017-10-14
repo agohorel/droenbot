@@ -17,13 +17,20 @@ bot.on("message", (message) =>{
 	}
 		
 	if(command === "ping"){
-		console.log(args);
 		message.channel.send("pong");
-	} else {
+	} else 
 		if(command === "derp"){
 			message.channel.send("https://imgur.com/a/UV6L7");
-		}	
-	}
+		} else
+			if(command === "multi"){
+				let [arg1, arg2, arg3] = args;
+				message.reply(`Hello ${message.author.username}, here is a list of your args: ${arg1}, ${arg2}, ${arg3});`);
+			} else 
+				if(command === "say"){
+					let text = args.slice(0).join(" ");
+					message.delete();
+					message.channel.send(text);
+				}
 });
 
 bot.login(config.token);
