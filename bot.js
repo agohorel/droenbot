@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 const config = require("./config.json");
-const request = require("request");
 const fs = require("fs");
 
 bot.on("ready", () =>{
@@ -9,43 +8,22 @@ bot.on("ready", () =>{
 });
 
 bot.on("message", (message) =>{
+	// check if message beings with prefix or if author is bot
+	if(!message.content.startsWith(config.prefix) || message.author.bot){
+		return;
+	}
+
 	// slice out arguments from command string
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	// shift command out of args array, leaving just the command. toLowerCase so commands are case insensitive.
 	const command = args.shift().toLowerCase();
 
-	if(!message.content.startsWith(config.prefix) || message.author.bot){
-		return;
+	try{
+		let commandFile = require(`./commands/${command}.js`);
+		commandFile.run(bot, message, args);
+	} catch (err){
+		console.error(err);
 	}
-		
-	if(command === "ping"){
-		message.channel.send("pong");
-	} else 
-		if(command === "derp"){
-			message.channel.send("https://imgur.com/a/UV6L7");
-		} else
-			if(command === "multi"){
-				let [arg1, arg2, arg3] = args;
-				message.reply(`Hello ${message.author.username}, here is a list of your args: ${arg1}, ${arg2}, ${arg3});`);
-			} else 
-				if(command === "say"){
-					let text = args.slice(0).join(" ");
-					message.delete();
-					message.channel.send(text);
-				} else {
-					if(command === "cryptos"){
-						request("https://api.cryptowat.ch/assets", function(error, response, body){
-						   if (!error && response.statusCode == 200){
-						       var data = JSON.parse(body);
-						       var string;
-						       data["result"].forEach(function(asset){
-						       		string += asset["name"] + ": " + asset["id"].toUpperCase() + "\n";
-						       });
-						       message.channel.send(string);
-						   } 
-						});
-					}
-				}
-});
+});	
 
 bot.login(config.token);
