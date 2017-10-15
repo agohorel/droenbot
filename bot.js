@@ -5,6 +5,7 @@ const fs = require("fs");
 
 bot.on("ready", () =>{
 	console.log("droenbot is live!");
+	bot.user.setGame("with my code");
 });
 
 bot.on("message", (message) =>{
