@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 const config = require("./config.json");
 const request = require("request");
+const fs = require("fs");
 
 bot.on("ready", () =>{
 	console.log("droenbot is live!");
@@ -38,6 +39,9 @@ bot.on("message", (message) =>{
 						       var data = JSON.parse(body);
 						       var string;
 						       data["result"].forEach(function(asset){
+						       		string += asset["name"] + ": " + asset["id"].toUpperCase() + "\n";
+						       });
+						       message.channel.send(string);
 						   } 
 						});
 					}
