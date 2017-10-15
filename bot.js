@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 const config = require("./config.json");
+const request = require("request");
 
 bot.on("ready", () =>{
 	console.log("droenbot is live!");
@@ -30,6 +31,16 @@ bot.on("message", (message) =>{
 					let text = args.slice(0).join(" ");
 					message.delete();
 					message.channel.send(text);
+				} else {
+					if(command === "cryptos"){
+						request("https://api.cryptowat.ch/assets", function(error, response, body){
+						   if (!error && response.statusCode == 200){
+						       var data = JSON.parse(body);
+						       var string;
+						       data["result"].forEach(function(asset){
+						   } 
+						});
+					}
 				}
 });
 
