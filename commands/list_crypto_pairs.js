@@ -11,6 +11,7 @@ exports.run = (bot, message, args) => {
 	       			string += market["exchange"] + ": " + market["pair"].toUpperCase() + "\n";
 	       		} 
 	       });
+	       string = string.replace("undefined", "");
 	       message.channel.send(string);
 	   } 
 	});

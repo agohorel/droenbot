@@ -8,6 +8,7 @@ exports.run = (bot, message, args) => {
 	       data["result"].forEach(function(asset){
 	       		string += asset["name"] + ": " + asset["id"].toUpperCase() + "\n";
 	       });
+	       string = string.replace("undefined", "");
 	       message.channel.send(string);
 	   } 
 	});
