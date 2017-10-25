@@ -1,9 +1,10 @@
 const request = require("request");
 
 exports.run = (bot, message, args) => {
-	let query = args;
-  query = encodeURI(query);
-  var url = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&titles=" + query + "&format=json"; 
+	let query = titleCase(args.slice().join(" "));
+
+  var url = encodeURI("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&titles=" + query + "&format=json");
+  console.log(url); 
     request(url, function(error, response, body){
        if (!error && response.statusCode == 200){
           var data = JSON.parse(body);
@@ -23,3 +24,12 @@ exports.run = (bot, message, args) => {
     });
 }
 
+function titleCase(str) {
+return str
+    .toLowerCase()
+    .split(' ')
+    .map(function(word) {
+        return word[0].toUpperCase() + word.substr(1);
+    })
+    .join(' ');
+ }
