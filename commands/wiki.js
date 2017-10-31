@@ -13,14 +13,21 @@ exports.run = (bot, message, args) => {
           var extract = data.query.pages[page].extract;
           var title = data.query.pages[page].title;
 
-          var string = extract.replace(/(<([^>]+)>)/ig, "");
-          var substring = string.substring(0, 1900);
+          try {
+            var string = extract.replace(/(<([^>]+)>)/ig, "");
 
-          message.channel.send("**"  + title + ":**" + "\n" + "\n" + substring + "...");
+            if (string.length >= 1900){
+              var substring = string.substring(0, 1900) + "...";
+              message.channel.send("**"  + title + ":**" + "\n" + "\n" + substring);
+            } else {
+              message.channel.send("**"  + title + ":**" + "\n" + "\n" + string);
+            }
+          }
 
-       } else {
-       	console.log(error);
-       }
+          catch(e){
+            message.channel.send("Huh, something went wrong. Try altering your search.");
+          }
+       } 
     });
 }
 
