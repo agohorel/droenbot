@@ -16,15 +16,32 @@ exports.run = (bot, message, args) => {
           try {
             var string = extract.replace(/(<([^>]+)>)/ig, "");
 
-            if (string.length >= 1900){
-              var substring = string.substring(0, 1900) + "...";
-              message.channel.send("**"  + title + ":**" + "\n" + "\n" + substring);
-            } else {
-              message.channel.send("**"  + title + ":**" + "\n" + "\n" + string);
+            if (string.length >= 1024){
+              var substring = string.substring(0, 1021) + "...";
+              var substring2 = "..." + string.substring(1021, 2042);
+              message.channel.send({embed: {
+                color: 3447003,
+                fields: [{
+                name: title,
+                value: substring
+                },{
+                  name: "cont.",
+                  value: substring2
+                }]
+              }});
             }
-          }
+            else{
+              message.channel.send({embed: {
+                color: 3447003,
+                fields: [{
+                  name: title,
+                  value: string
+                }] 
+              }});
+            }
+          }  
 
-          catch(e){
+          catch(error){
             message.channel.send("Huh, something went wrong. Try altering your search.");
           }
        } 
@@ -32,11 +49,11 @@ exports.run = (bot, message, args) => {
 }
 
 function titleCase(str) {
-return str
-    .toLowerCase()
-    .split(' ')
-    .map(function(word) {
-        return word[0].toUpperCase() + word.substr(1);
-    })
-    .join(' ');
+  return str
+      .toLowerCase()
+      .split(' ')
+      .map(function(word) {
+          return word[0].toUpperCase() + word.substr(1);
+      })
+      .join(' ');
  }
