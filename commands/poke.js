@@ -27,7 +27,7 @@ exports.run = (bot, message, args) => {
 			}
 			
 			message.channel.send({embed: {
-			    color: 3447003,
+			    color: 16763653,
 			    author: {
 			      name: data.name.toUpperCase(),
 			      icon_url: data.sprites.front_default
@@ -51,7 +51,7 @@ exports.run = (bot, message, args) => {
 			      	height: 150,
 			      	width: 150
 			      }, 
-			}
+				}
 			});
 		}
 	});

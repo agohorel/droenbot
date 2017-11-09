@@ -22,7 +22,7 @@ exports.run = (bot, message, args) => {
 					aliases = aliases.slice(0, aliases.length - 2);
 
 					message.channel.send({embed: {
-						color: 3447003,
+						color: 9582388,
 						fields: [
 						{
 							name: data.name + ", " + data.titles[0],
@@ -46,4 +46,9 @@ exports.run = (bot, message, args) => {
 			}
 		});
 	}
+				}
+			}
+		});
+	}
+
 }	

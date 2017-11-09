@@ -20,7 +20,7 @@ exports.run = (bot, message, args) => {
               var substring = string.substring(0, 1021) + "...";
               var substring2 = "..." + string.substring(1021, 2042);
               message.channel.send({embed: {
-                color: 3447003,
+                color: 15987699,
                 fields: [{
                 name: title,
                 value: substring
@@ -32,7 +32,7 @@ exports.run = (bot, message, args) => {
             }
             else{
               message.channel.send({embed: {
-                color: 3447003,
+                color: 15987699,
                 fields: [{
                   name: title,
                   value: string
