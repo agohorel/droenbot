@@ -2,9 +2,8 @@ exports.run = (bot, message, args) => {
 	let input = args.slice(0).join(" ").toLowerCase();
 	var char, string;
 	
-	console.log(input);
+	console.log(message.author.username + ": " + input);
 	input = input.replace(/[^\w\s]/gi, "");
-	console.log(input);
 
 	for (var i = 0; i < input.length; i++){
 		char = input[i];
