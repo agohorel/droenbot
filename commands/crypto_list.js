@@ -6,7 +6,7 @@ exports.run = (bot, message, args) => {
 	       var data = JSON.parse(body);
 	       var string;
 	       data["result"].forEach(function(asset){
-	       		string += asset["name"] + ": " + asset["id"].toUpperCase() + "\n";
+	       		string += asset["name"] + ": " + asset["symbol"].toUpperCase() + "\n";
 	       });
 	       string = string.replace("undefined", "");
 	       message.channel.send(string);
