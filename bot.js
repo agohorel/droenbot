@@ -17,7 +17,7 @@ bot.on("message", (message) =>{
 	// slice out arguments from command string
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	// shift command out of args array, leaving just the command. toLowerCase so commands are case insensitive.
-	const command = args.shift().toLowerCase();
+	const command = args.shift().toLowerCase().replace("/", "");
 
 	try{
 		let commandFile = require(`./commands/${command}.js`);
