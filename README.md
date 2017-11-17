@@ -1,6 +1,6 @@
-droenbot is a crappy node.js discord bot and you probably shouldn't use it.
+droenbot is a crappy node.js discord bot i'm making for fun and you probably shouldn't use it.
 
-but if you want to use it, all you have to do is create a `config.json` file with a discord API key. 
+but if you want to use it, all you have to do is create a `config.json` file with your discord API key and stick it in the root folder. the `gitignore` file already prevents the `config.json` file from being tracked by git, but if you rename it, make sure to update the gitignore accordingly or interdimensional hackers will steal your API keys and use them to delete all the money in the universe.
 
 ex. `config.json` file:
 `{
@@ -10,5 +10,5 @@ ex. `config.json` file:
 
 if you want to make more commands just stick 'em in the commands folder.
 
-to call the command in discord, just type `!command_name.js`. you can change the prefix in the `config.json` file.
+to call the command in discord, just type `!command_name`. you can change the prefix in the `config.json` file.
 
