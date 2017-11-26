@@ -46,7 +46,9 @@ exports.run = (bot, message, args) => {
 			});
 
 		} else{
-			message.channel.send("Huh, something went wrong. The correct syntax is `!crypto_price exchange trading pair`");
+			var string = "Huh, something went wrong. The correct syntax is `!crypto_price [exchange] [trading pair]`." + "\n" + "\n";
+			string += "Try `!crypto_pairs [exchange]` to find a list of supported trading pairs or `!crypto_list` to list all supported assets.";
+			message.channel.send(string);
 		}
 	});
 }
