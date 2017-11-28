@@ -25,18 +25,22 @@ exports.run = (bot, message, args) => {
 			    fields: [{
 			        name: "LAST",
 			        value: last.toString()
+			        // inline: true
 			      },
 			      {
 			      	name: "% CHANGE",
-			      	value: change_formatted
+			      	value: change_formatted,
+			      	inline: true
 			      },
 			      {
 			        name: "24 HR. HIGH",
-			        value: high.toString()
+			        value: high.toString(),
+			        inline: true
 			      },
 			      {
 			        name: "24 HR. LOW",
-			        value: low.toString()
+			        value: low.toString(),
+			        inline: true
 			      }
 			    ],
 			    footer: {
