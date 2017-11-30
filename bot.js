@@ -20,6 +20,18 @@ bot.on("warn", (err) => console.warn(err));
 bot.on("error", (err) => console.error(err));
 
 bot.on("message", (message) => {
+
+	// check if messages in the memes, music, and sick-internet-content channels contain embeds after waiting 2 sec for the embed to generate
+	// if messages contain no embed (i.e. comments on posts), they will be deleted after 24 hours
+	if (message.channel.id === '384769538790785055' || message.channel.id === '368127287155097612' || message.channel.id === '373567688129118208') {
+		setTimeout(() => {
+			console.log("this message's embed array contains: " + message.embeds.length + " elements.");	
+			if (message.embeds.length < 1){
+				message.delete(86400000);
+			}	
+		}, 2000);
+	}
+
 	// check if message beings with prefix or if author is bot
 	if(!message.content.startsWith(config.prefix) || message.author.bot){
 		return;
@@ -38,6 +50,7 @@ bot.on("message", (message) => {
 	catch (err){
 		console.error(err);
 	}
+
 });	
 
 bot.login(config.token);
