@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 const config = require("./config.json");
+const colors = require("colors");
 const fs = require("fs");
 
 var droenArt = ` 
@@ -48,13 +49,13 @@ var droenArt = `
  ,x-\"F   ]    Ax^\" q    hp\"  \`u jM\"\"u  a^ ^, j\"  \"*g_   p  ^mg_   [  F\"-x, \n`;
 
 bot.on("ready", () => {
-	console.log(droenArt);
+	console.log(droenArt.cyan);
 	bot.user.setGame("with my code");
 });
 
-bot.on("debug", (err) => console.info(err));
-bot.on("warn", (err) => console.warn(err));
-bot.on("error", (err) => console.error(err));
+bot.on("debug", (err) => console.info(err.grey));
+bot.on("warn", (err) => console.warn(err.yellow));
+bot.on("error", (err) => console.error(err.red));
 
 bot.on("message", (message) => {
 
@@ -69,7 +70,7 @@ bot.on("message", (message) => {
 		}, 2000);
 	}
 
-	// check if message beings with prefix or if author is bot
+	// check if message doesn't begin with prefix or if author is bot
 	if(!message.content.startsWith(config.prefix) || message.author.bot){
 		return;
 	}
@@ -85,7 +86,7 @@ bot.on("message", (message) => {
 	} 
 
 	catch (err){
-		console.error(err);
+		console.error(err.red);
 	}
 
 });	
