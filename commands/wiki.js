@@ -1,51 +1,51 @@
 const request = require("request");
+var displayLinks;
 
 exports.run = (bot, message, args) => {
-	let query = titleCase(args.slice().join(" "));
+	let query = args.slice().join(" ");
+  var url = encodeURI(`https://en.wikipedia.org/w/api.php?format=json&action=opensearch&search=${query}`);
+  
+  request(url, function(error, response, body){
+    try{
+      if (!error){
+        var data = JSON.parse(body);
+        var content = data[2].toString();
+        var fullArticle = "Full article:";
+        var link = data[3][0];
+        var links = data[3];
 
-  var url = encodeURI("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&titles=" + query + "&format=json");
-  console.log(url); 
-    request(url, function(error, response, body){
-       if (!error && response.statusCode == 200){
-          var data = JSON.parse(body);
-          console.log(query);
-          var page = Object.keys(data.query.pages)[0];
-          var extract = data.query.pages[page].extract;
-          var title = data.query.pages[page].title;
+        for (var i = 0; i < links.length; i++){
+          displayLinks += links[i] + "\n"; 
+        }
 
-          try {
-            var string = extract.replace(/(<([^>]+)>)/ig, "");
+        if (content.length > 1021){
+          content = content.substring(0, 1021) + "...";
+        }
+      
+        message.channel.send({embed: {
+          color: 15987699,
+          fields: [{
+            name: titleCase(query),
+            value: content
+          },
+          {
+            name: fullArticle,
+            value: link
+          },
+          {
+            name: "Did you mean?",
+            value: displayLinks.replace("undefined", "")
+          }]
+        }}); 
 
-            if (string.length >= 1024){
-              var substring = string.substring(0, 1021) + "...";
-              var substring2 = "..." + string.substring(1021, 2042);
-              message.channel.send({embed: {
-                color: 15987699,
-                fields: [{
-                name: title,
-                value: substring
-                },{
-                  name: "cont.",
-                  value: substring2
-                }]
-              }});
-            }
-            else{
-              message.channel.send({embed: {
-                color: 15987699,
-                fields: [{
-                  name: title,
-                  value: string
-                }] 
-              }});
-            }
-          }  
-
-          catch(error){
-            message.channel.send("Huh, something went wrong. Try altering your search.");
-          }
-       } 
-    });
+      }
+    }
+    
+    catch(error){
+      console.error(error);
+    }
+    
+  });
 }
 
 function titleCase(str) {
