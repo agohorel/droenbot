@@ -3,5 +3,5 @@ var lenny = ["( ͡° ͜ʖ ͡°)", "(ಥ ͜ʖಥ)", "(☞ຈل͜ຈ)☞", "ヽ༼
 
 exports.run = (bot, message, args) => {
 	message.delete();
-	message.channel.send(lenny[Math.floor(Math.random() * lenny.length)]);
+	message.channel.send(message.author.username + ": " + lenny[Math.floor(Math.random() * lenny.length)]);
 }
