@@ -35,13 +35,24 @@ let gifs = {
 
 exports.run = (bot, message, args) => {
 	let gif = args;
+	let list = "";
 	message.delete();
 
 	if (gif.length === 0 || gif.length === undefined){
 		message.reply("You must specify a supported gif, ex. `!gif doot`. To see a list of supported gifs, use `!gif list`.");
 		return;
 	}
-	
+
+	if (gif[0] === "list" || gif[0] === "help"){
+		Object.keys(gifs).forEach(function(gif){
+			list += gif + "\n";
+		});
+		message.channel.send({embed: {
+			title: "ALL THE GIFS THAT'RE FIT TO SEND",
+			description: list 
+		}});
+	}
+
 	else {
 		message.channel.send({embed: {
 			title: `${message.author.username}:`,
