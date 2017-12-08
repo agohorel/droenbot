@@ -30,7 +30,14 @@ let gifs = {
 	yoshi: "https://cdn.discordapp.com/attachments/367895803303428097/387837678474887169/yoshi.gif",
 	diddykong: "https://cdn.discordapp.com/attachments/367895803303428097/387837682992021505/diddy.gif",
 	donnie: "https://cdn.discordapp.com/attachments/367895803303428097/387837686796517377/donnie.gif",
-	snoop: "https://cdn.discordapp.com/attachments/367895803303428097/387837695461949442/snoop.gif"
+	snoop: "https://cdn.discordapp.com/attachments/367895803303428097/387837695461949442/snoop.gif",
+	nedm: "https://cdn.discordapp.com/attachments/367895803303428097/388121847948115968/fffffff.gif",
+	nedm2: "https://cdn.discordapp.com/attachments/367895803303428097/388121863605190656/nedm.gif",
+	nope: "https://cdn.discordapp.com/attachments/367895803303428097/388121854252023811/snoop.gif",
+	mostdangerousgame: "https://cdn.discordapp.com/attachments/367895803303428097/388121863865499648/ewoktv.gif",
+	rofldata: "https://cdn.discordapp.com/attachments/367895803303428097/388473532822061070/rofldata.gif",
+	popo: "https://cdn.discordapp.com/attachments/367895803303428097/388478604675252224/Siren.gif",
+	rage: "https://cdn.discordapp.com/attachments/367895803303428097/388478644378664965/dinorage.gif"
 };
 
 exports.run = (bot, message, args) => {
@@ -39,9 +46,11 @@ exports.run = (bot, message, args) => {
 	message.delete();
 
 	if (gif[0] === "list" || gif[0] === "help"){
-		Object.keys(gifs).forEach(function(gif){
-			list += gif + "\n";
-		});
+		Object.keys(gifs)
+			.sort()
+			.forEach(function(gif){
+				list += gif + "\n";
+			});
 		message.channel.send({embed: {
 			title: "ALL THE GIFS THAT'RE FIT TO SEND",
 			description: list 
