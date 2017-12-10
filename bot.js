@@ -58,14 +58,12 @@ bot.on("warn", (err) => console.warn(err.yellow));
 bot.on("error", (err) => console.error(err.red));
 
 bot.on("message", (message) => {
-
-	// check if messages in the memes, music, and sick-internet-content channels contain embeds after waiting 2 sec for the embed to generate
-	// if messages contain no embed (i.e. comments on posts), they will be deleted after 24 hours
-	if (message.channel.id === '384769538790785055' || message.channel.id === '368127287155097612' || message.channel.id === '373567688129118208') {
+	// check if messages in the memes, music, sick-internet-content, and dev channels contain embeds or attachments after waiting 2 sec for the embed to generate
+	// posts that fail these tests (i.e. comments on posts) will be deleted after 1 hour
+	if (message.channel.id === '384769538790785055' || message.channel.id === '368127287155097612' || message.channel.id === '373567688129118208' || message.channel.id === '367895803303428097') {
 		setTimeout(() => {
-			console.log("this message's embed array contains: " + message.embeds.length + " elements.");	
-			if (message.embeds.length < 1){
-				message.delete(86400000);
+			if (message.embeds.length < 1 || message.attachments.size < 1){
+				message.delete(3600000);
 			}	
 		}, 2000);
 	}
