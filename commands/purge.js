@@ -6,6 +6,7 @@ var channelsToPurge = {
 };
 
 exports.run = (bot, message, args) => {
+	var totalPurged = 0;
 	let purgeBatchSize = args;
 	// check if the command msg is in a channel marked for cleaning 
 	if (Object.values(channelsToPurge).indexOf(message.channel.id) > -1){
@@ -15,17 +16,20 @@ exports.run = (bot, message, args) => {
 				// loop through fetched messages and check their contents
 				messages.forEach(function(msg){
 					// if a message is text-only, delete it
-					if(msg.embeds.length === 0 && msg.attachments.size === 0){
+					if(msg.embeds.length === 0 && msg.attachments.size === 0 || msg.author.bot){
 						console.log("Embeds: ".grey + msg.embeds.length + " Attachments: ".grey + msg.attachments.size);
 						console.log("deleted msg: ".red + msg + "\n" + "from: ".magenta + msg.author.username.cyan + " on ".magenta + msg.createdAt.toString().grey + "\n");
 						msg.delete();
+						totalPurged++;
 					}
 					// if a message contains an embed or attachment, keep it
 					else if (msg.embeds.length === 1 || msg.attachments.size === 1){
 						console.log(`${msg.author.username}'s message from ${msg.createdAt} with ${msg.embeds.length} embeds and ${msg.attachments.size} attachments was spared from deletion. \n`.green);
 					}
-
-				});
-			});	
+				});				
+			});		
 	}
+	setTimeout(function() {
+		console.log(`${message.author.username} purged ${totalPurged} messages from #${message.channel.name}`); 
+	}, 1000);
 }
