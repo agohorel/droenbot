@@ -1,4 +1,4 @@
-var cleanerChannels = {
+var channelsToPurge = {
 	memes: "368127287155097612",
 	music: "384769538790785055",
 	sick_internet_content: "373567688129118208",
@@ -6,11 +6,11 @@ var cleanerChannels = {
 };
 
 exports.run = (bot, message, args) => {
-	let cleanerBatchSize = args;
+	let purgeBatchSize = args;
 	// check if the command msg is in a channel marked for cleaning 
-	if (Object.values(cleanerChannels).indexOf(message.channel.id) > -1){
+	if (Object.values(channelsToPurge).indexOf(message.channel.id) > -1){
 		// fetch the specified # of messages
-		message.channel.fetchMessages({limit: cleanerBatchSize})
+		message.channel.fetchMessages({limit: purgeBatchSize})
 			.then (messages => {
 				// loop through fetched messages and check their contents
 				messages.forEach(function(msg){
