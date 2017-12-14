@@ -58,16 +58,6 @@ bot.on("warn", (err) => console.warn(err.yellow));
 bot.on("error", (err) => console.error(err.red));
 
 bot.on("message", (message) => {
-	// check if messages in the memes, music, sick-internet-content, and dev channels contain embeds or attachments after waiting 2 sec for the embed to generate
-	// posts that fail these tests (i.e. comments on posts) will be deleted after 1 hour
-	if (message.channel.id === '384769538790785055' || message.channel.id === '368127287155097612' || message.channel.id === '373567688129118208' || message.channel.id === '367895803303428097') {
-		setTimeout(() => {
-			if (message.embeds.length < 1 || message.attachments.size < 1){
-				message.delete(3600000);
-			}	
-		}, 2000);
-	}
-
 	// check if message doesn't begin with prefix or if author is bot
 	if(!message.content.startsWith(config.prefix) || message.author.bot){
 		return;
@@ -86,7 +76,6 @@ bot.on("message", (message) => {
 	catch (err){
 		console.error(err.red);
 	}
-
 });	
 
 bot.login(config.token);
