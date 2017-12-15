@@ -1,4 +1,4 @@
-var channelsToPurge = {
+var channelsToClean = {
 	memes: "368127287155097612",
 	music: "384769538790785055",
 	sick_internet_content: "373567688129118208",
@@ -6,12 +6,13 @@ var channelsToPurge = {
 };
 
 exports.run = (bot, message, args) => {
-	var totalPurged = 0;
-	let purgeBatchSize = args;
+	var totalCleaned = 0;
+	var index = 1;
+	let cleanBatchSize = args;
 	// check if the command msg is in a channel marked for cleaning 
-	if (Object.values(channelsToPurge).indexOf(message.channel.id) > -1){
+	if (Object.values(channelsToClean).indexOf(message.channel.id) > -1){
 		// fetch the specified # of messages
-		message.channel.fetchMessages({limit: purgeBatchSize})
+		message.channel.fetchMessages({limit: cleanBatchSize})
 			.then (messages => {
 				// loop through fetched messages and check their contents
 				messages.forEach(function(msg){
@@ -19,8 +20,9 @@ exports.run = (bot, message, args) => {
 					if(msg.embeds.length === 0 && msg.attachments.size === 0 || msg.author.bot){
 						console.log("Embeds: ".grey + msg.embeds.length + " Attachments: ".grey + msg.attachments.size);
 						console.log("deleted msg: ".red + msg + "\n" + "from: ".magenta + msg.author.username.cyan + " on ".magenta + msg.createdAt.toString().grey + "\n");
-						msg.delete();
-						totalPurged++;
+						setTimeout(function(){ msg.delete(); }, 3000 * index); 
+						totalCleaned++;
+						index++;
 					}
 					// if a message contains an embed or attachment, keep it
 					else if (msg.embeds.length === 1 || msg.attachments.size === 1){
@@ -30,6 +32,6 @@ exports.run = (bot, message, args) => {
 			});		
 	}
 	setTimeout(function() {
-		console.log(`${message.author.username} purged ${totalPurged} messages from #${message.channel.name}`); 
+		console.log(`${message.author.username} cleaned ${totalCleaned} messages from #${message.channel.name}`); 
 	}, 1000);
 }
