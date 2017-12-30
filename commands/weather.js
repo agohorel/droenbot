@@ -13,6 +13,8 @@ exports.run = (bot, message, args) => {
 	var string = "";
 	var displayColor = [16, 123, 181];
 	
+	message.delete();
+
 	try {
 		request(`https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22${city}%2C%20${state}%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`, function(error, response, body){
 			if (!error && response.statusCode == 200){
@@ -23,7 +25,7 @@ exports.run = (bot, message, args) => {
 
 				data.query.results.channel.item.forecast.forEach(function(forecast){
 					forecasts.push(forecast.text.toLowerCase());
-					string += "**" + forecast.day + "**" + ": " + forecast.text + ". " + "High: " + forecast.high + ", " + "Low: " + forecast.low + ", " + "\n";
+					string += "**" + forecast.day + "**" + ": " + forecast.text + ". " + "High: " + forecast.high + ", " + "Low: " + forecast.low + "\n";
 				});
 
 				if (forecasts[0].indexOf("snow") > -1){
