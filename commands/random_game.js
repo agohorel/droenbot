@@ -14,7 +14,7 @@ let games = {
 	}, 
 	fortnite: {
 		color: [118, 31, 161],
-		img: "http://www.vpdaily.com/wp-content/uploads/2015/06/Logo_Art_Final-copy.png"	
+		img: "https://theverticalslice.files.wordpress.com/2017/06/fortnite_white_logo.png"	
 	}, 
 	csgo: {
 		color: [39, 49, 65],
@@ -31,16 +31,37 @@ let games = {
 	thedivision: {
 		color: [255, 109, 16],
 		img: "https://cdn.division.zone/uploads/2014/07/tom-clancys-the-division-logo.png"	
-	} 
+	},
+	rocketleague: {
+		color: [0, 95, 182],
+		img: "https://vignette.wikia.nocookie.net/lego-dimensions-customs/images/3/32/Rocket_League_Logo.png/revision/latest?cb=20170804022505"	
+	},
+	siege: {
+		color: [244, 197, 11],
+		img: "https://i.pinimg.com/originals/e5/45/01/e545016b11c4d8ac5b8525736c4f3484.png"	
+	}    
 };
 
 exports.run = (bot, message, args) => {
 	let [] = args;
+	var list = "";
+
+	if (args[0] === "list" || args[0] === "help" || args[0] === undefined){
+		Object.keys(games)
+			.sort()
+			.forEach(function(game){
+				list += game + "\n";
+			});
+		message.channel.send({embed: {
+			title: "Games List:",
+			description: list 
+		}});
+		return;
+	}
 
 	var selectedGame = args[Math.floor(Math.random() * args.length)];
 
 	Object.keys(games).forEach(function(key){
-		console.log(key, games[key].color, games[key].img);
 		if(selectedGame === key){
 			selectedGameColor = games[key].color;
 			selectedGameImg = games[key].img;
