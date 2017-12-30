@@ -1,26 +1,36 @@
-const config = require("../config.json");
+const Discord = require('discord.js');
 
 exports.run = (bot, message, args) => {
 	let [iterations, faces, diff] = args;
-	var diceroll, rolls;
-	var total = 0;
+	var diceroll = 0, 
+		total = 0,
+		result = 0,
+		winLossTitle,
+		winLossMsg,
+		color;
 	diff = Math.ceil(1 * `${iterations}` * (`${faces}` * `${diff}`));
 
 	for (var i = 0; i < `${iterations}`; i++){
 		diceroll = Math.floor(Math.random() * `${faces}`) + 1;
-		rolls += diceroll + "\n";
 		total += diceroll;
 	}
 	
-	var result = total - diff;
-
-	rolls = rolls.replace("undefined", "");
+	result = total - diff;
 
 	if (total >= diff){
-		message.reply(`u **won** with a result of **${result}** (score: ${total}, diff: ${diff}`);
+		winLossTitle = `${message.author.username}   ︻デ┳═ー   THE GAME`;
+		winLossMsg = `You **won** with a result of **${result}** (score: ${total}, diff: ${diff})`;
+		color = 3394611;
 	} else {
-		message.reply(`u **lost** with a result of **${result}** (score: ${total}, diff: ${diff}`);
+		winLossTitle = `THE GAME   ︻デ┳═ー   ${message.author.username}`;
+		winLossMsg = `You **lost** with a result of **${result}** (score: ${total}, diff: ${diff})`;
+		color = 13382451;
 	}
-	
-	//message.channel.send("You rolled: \n" + rolls + "\n" + "**For a total score of: **" + total);
+
+	var embed = new Discord.RichEmbed()
+				.setTitle(winLossTitle)
+				.setDescription(winLossMsg)
+				.setColor(color);
+
+			message.channel.send(embed);
 }
