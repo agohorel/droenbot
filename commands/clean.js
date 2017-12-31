@@ -8,9 +8,9 @@ var channelsToClean = {
 exports.run = (bot, message, args) => {
 	const mod = message.guild.roles.find("name", "mod");
 
- if (!message.member.roles.has(mod.id)) {
-    return message.reply("You do not have sufficient permissions to use this command.");
-}
+ 	if (!message.member.roles.has(mod.id)) {
+    	return message.reply("You do not have sufficient permissions to use this command.");
+	}
 
 	var totalCleaned = 0;
 	var index = 1;
@@ -26,7 +26,7 @@ exports.run = (bot, message, args) => {
 					if(msg.embeds.length === 0 && msg.attachments.size === 0 || msg.author.bot){
 						console.log("Embeds: ".grey + msg.embeds.length + " Attachments: ".grey + msg.attachments.size);
 						console.log("deleted msg: ".red + msg + "\n" + "from: ".magenta + msg.author.username.cyan + " on ".magenta + msg.createdAt.toString().grey + "\n");
-						setTimeout(function(){ msg.delete(); }, 3000 * index); 
+						setTimeout(function(){ msg.delete(); }, 5000 * index); 
 						totalCleaned++;
 						index++;
 					}
