@@ -48,6 +48,8 @@ var droenArt = `
     jLs*^6   \`_  _&*\"  q  _,NF   \"wp\"  \"*g\"   _NL_  p  \"-d_   F   ]\"*u_F   \n\
  ,x-\"F   ]    Ax^\" q    hp\"  \`u jM\"\"u  a^ ^, j\"  \"*g_   p  ^mg_   [  F\"-x, \n`;
 
+const issuedCommandRecently = new Set();
+
 bot.on("ready", () => {
 	console.log(droenArt.cyan);
 	bot.user.setGame("with my code");
@@ -62,6 +64,20 @@ bot.on("message", (message) => {
 	if(!message.content.startsWith(config.prefix) || message.author.bot){
 		return;
 	}
+
+	// if user issued commands within the cooldown window, ignore their command and send a DM
+	if(issuedCommandRecently.has(message.author.id)){
+		message.delete();
+		message.author.send("You can only issue bot commands once every 2 seconds. Pls watch the spam.");
+		return;
+	}
+
+	// add user to issuedCommandRecently set
+	issuedCommandRecently.add(message.author.id);
+	// remove user from issuedCommandRecently set after cooldown
+	setTimeout(() => {
+		issuedCommandRecently.delete(message.author.id);
+	}, 2000);
 
 	// slice out arguments from command string
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
