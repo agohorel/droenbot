@@ -39,6 +39,46 @@ let games = {
 	siege: {
 		color: [244, 197, 11],
 		img: "https://i.pinimg.com/originals/e5/45/01/e545016b11c4d8ac5b8525736c4f3484.png"	
+	},
+	thelongdark: {
+		color: [22, 98, 124],
+		img: "https://ksr-ugc.imgix.net/assets/003/632/189/3e54e20be040045c9300d9e03f6d8a78_original.png?w=700&fit=max&v=1429302564&auto=format&q=92&s=5d66171d97543d0adddcd7f60f55f1cb"
+	},
+	battlefield4:{
+		color: [111, 137, 164],
+		img: "https://upload.wikimedia.org/wikipedia/commons/8/87/Battlefield_4_logo.png"
+	},
+	battlefield1:{
+		color: [254, 163, 23],
+		img: "https://vignette1.wikia.nocookie.net/battlefield/images/b/b4/BF1_logo.png/revision/latest?cb=20160506204901"
+	},
+	insurgency: {
+		color: [85, 98, 87],
+		img: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Insurgency_Logo.png"
+	},
+	dayofinfamy: {
+		color: [242, 238, 225],
+		img: "https://newworldinteractive.com/isl/uploads/2016/06/DOI_logo_brown_onBlack.png"
+	},
+	hl3: {
+		color: [247, 146, 58],
+		img: "http://dotageeks.com/wp-content/uploads/2015/10/Half-Life-Logo-05.png"
+	},
+	dota2: {
+		color: [222, 54, 34],
+		img: "https://www.hiveworkshop.com/attachments/dota_2_logo-png.141851/"
+	},
+	teamfortress2: {
+		color: [196, 141, 43],
+		img: "http://www.teamfortress.com/workshop/images/tf_logo.png"
+	},
+	titanfall: {
+		color: [0, 137, 196],
+		img: "https://www.jinx.com/content/responsive_themes/titanfall/tf_logo.png"
+	},
+	titanfall2: {
+		color: [115, 134, 170],
+		img: "https://1stopesports.com/uploads/monthly_2017_01/titanfall2.png.310031e5f0de96c2151dbec8cc2ac276.png"
 	}    
 };
 
