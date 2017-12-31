@@ -6,6 +6,12 @@ var channelsToClean = {
 };
 
 exports.run = (bot, message, args) => {
+	const mod = message.guild.roles.find("name", "mod");
+
+ if (!message.member.roles.has(mod.id)) {
+    return message.reply("You do not have sufficient permissions to use this command.");
+}
+
 	var totalCleaned = 0;
 	var index = 1;
 	let cleanBatchSize = args;
