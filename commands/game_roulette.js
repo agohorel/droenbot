@@ -68,10 +68,18 @@ exports.run = (bot, message, args) => {
 		}
 	});
 
-	var embed = new Discord.RichEmbed()
-				.setTitle("You should play:")
-				.setColor(selectedGameColor)
-				.setImage(selectedGameImg);
+	var roulette = new Discord.RichEmbed()
+		.setTitle("Spinning magic roulette wheel...")
+		.setColor([248, 24, 23])
+		.setImage("https://media2.giphy.com/media/xUn3CftPBajoflzROU/giphy.gif");
 
-			message.channel.send(embed);
+	message.channel.send(roulette);	
+
+	setTimeout(() => {
+		var embed = new Discord.RichEmbed()
+			.setTitle("You should play:")
+			.setColor(selectedGameColor)
+			.setImage(selectedGameImg);
+		message.channel.send(embed);
+	}, 5000);
 }
