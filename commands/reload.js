@@ -1,5 +1,5 @@
 exports.run = (client, message, args) => {
-	const mod = message.guild.roles.find("name", "testmod");
+	const mod = message.guild.roles.find("name", "mod");
 
  	if (!message.member.roles.has(mod.id)) {
     	return message.reply("You do not have sufficient permissions to use this command.");
