@@ -2,7 +2,8 @@ var channelsToClean = {
 	memes: "368127287155097612",
 	music: "384769538790785055",
 	sick_internet_content: "373567688129118208",
-	dev: "367895803303428097"
+	dev: "367895803303428097",
+	general: "367808668986638339"
 };
 
 exports.run = (bot, message, args) => {
@@ -31,7 +32,7 @@ exports.run = (bot, message, args) => {
 						index++;
 					}
 					// if a message contains an embed or attachment, keep it
-					else if (msg.embeds.length === 1 || msg.attachments.size === 1){
+					else if (msg.embeds.length > 0 || msg.attachments.size > 0){
 						console.log(`${msg.author.username}'s message from ${msg.createdAt} with ${msg.embeds.length} embeds and ${msg.attachments.size} attachments was spared from deletion. \n`.green);
 					}
 				});				
