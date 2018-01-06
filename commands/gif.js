@@ -44,7 +44,10 @@ let gifs = {
 	yesbruvyes: "https://cdn.discordapp.com/attachments/391071738856734720/395400566072672276/yesbruvyes.gif",
 	whatastory: "https://cdn.discordapp.com/attachments/391071738856734720/395400567582621696/whatastorymark.gif",
 	whichone: "https://cdn.discordapp.com/attachments/391071738856734720/395400576042663936/whichone.gif",
-	mrrobot: "https://cdn.discordapp.com/attachments/391071738856734720/395813301751382028/robot.gif"
+	mrrobot: "https://cdn.discordapp.com/attachments/391071738856734720/395813301751382028/robot.gif",
+	wtf: "https://cdn.discordapp.com/attachments/391071738856734720/399302507060264980/MRW_I_realize_the_last_90s_kid_will_become_an_adult_today_-_Imgur.gif",
+	seal: "https://cdn.discordapp.com/attachments/391071738856734720/398875637361672212/deargod.gif",
+	hoobastank: "https://cdn.discordapp.com/attachments/391071738856734720/398874875252703253/hoobastank.gif"
 };
 
 exports.run = (bot, message, args) => {
