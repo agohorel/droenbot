@@ -79,6 +79,22 @@ let games = {
 	titanfall2: {
 		color: [115, 134, 170],
 		img: "https://1stopesports.com/uploads/monthly_2017_01/titanfall2.png.310031e5f0de96c2151dbec8cc2ac276.png"
+	},
+	theforest: {
+		color: [247, 226, 13],
+		img: "https://server.nitrado.net/uploads/nitrado/offer_pages/theforest/header.png"
+	},
+	ark: {
+		color: [94, 163, 19],
+		img: "https://vignette.wikia.nocookie.net/ark-survival-evolved/images/1/1a/ARK_LOGO.png/revision/latest/scale-to-width-down/640?cb=20150511235724"
+	},
+	garrysmod: {
+		color: [0, 108, 255],
+		img: "https://steamuserimages-a.akamaihd.net/ugc/39747379221479843/83CC5B52C722BC09281413F8E6C0AA08E7F6B826/"
+	},
+	wildlands: {
+		color: [226, 159, 38],
+		img: "https://vignette.wikia.nocookie.net/ghostrecon/images/c/c6/GRW_LOGO.png/revision/latest?cb=20170129091526"
 	}    
 };
 
