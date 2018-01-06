@@ -127,7 +127,7 @@ exports.run = (bot, message, args) => {
 	var roulette = new Discord.RichEmbed()
 		.setTitle("Spinning magic roulette wheel...")
 		.setColor([248, 24, 23])
-		.setImage("https://media2.giphy.com/media/xUn3CftPBajoflzROU/giphy.gif");
+		.setImage("https://cdn.discordapp.com/attachments/391071738856734720/399299268818501632/roulette_optimized.gif");
 
 	message.channel.send(roulette);	
 
