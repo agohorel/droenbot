@@ -7,7 +7,7 @@ exports.run = (bot, message, args) => {
 	var index = 1;
 
 	Object.keys(directory[username]).forEach(function(key){
-		if (index <= 5){
+		if (index <= Object.keys(directory[username]).length -1){
 			string += directory[username][key] + "\n";
 			index++;	
 		} else {
