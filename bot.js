@@ -52,7 +52,7 @@ const issuedCommandRecently = new Set();
 
 bot.on("ready", () => {
 	console.log(droenArt.cyan);
-	bot.user.setGame("with my code");
+	bot.user.setActivity("with my code");
 });
 
 bot.on("debug", (err) => console.info(err.grey));
