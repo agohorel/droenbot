@@ -71,16 +71,24 @@ exports.run = (bot, message, args) => {
 	let [] = args;
 	let user = args.slice(0,-1).join(" ");
 	let time = args.slice(-1);
-	console.log(args, user, time);
+	
 	// grab nickname of command issuer
 	var nickname = message.author.lastMessage.member.nickname;
 	var username = message.author.username;
 	console.log(`username is ${username}, nickname is ${nickname}`);
 
 	theirTimezone = directory[user].rawTimezone;
-	yourTimezone = directory[nickname].rawTimezone;
 	theirTimezoneValue = timezones[directory[user].rawTimezone];
-	yourTimezoneValue = timezones[directory[nickname].rawTimezone];
+
+	if (nickname === null){
+		yourTimezone = directory[username].rawTimezone;
+		yourTimezoneValue = timezones[directory[username].rawTimezone];
+		console.log(`using username`);
+	} else {
+		yourTimezone = directory[nickname].rawTimezone;
+		yourTimezoneValue = timezones[directory[nickname].rawTimezone];
+		console.log(`using nickname`);
+	}
 
 	console.log(`theirs: ${theirTimezone}, ${theirTimezoneValue}. yours: ${yourTimezone}, ${yourTimezoneValue}.`);
 	console.log(`time: ${time}. timesRaw: ${timesRaw[time]}`);
