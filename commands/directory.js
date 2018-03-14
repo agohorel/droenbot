@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const directory = require("../directory.json");
 
 exports.run = (bot, message, args) => {
-	let username = args;
+	let username = args.slice(0).join(" ");
 	var string = "";
 	var index = 1;
 
@@ -19,7 +19,7 @@ exports.run = (bot, message, args) => {
 		.setTitle(username)
 		.setImage(directory[username].image)
 		.setDescription(string)
-		.setColor([255, 255, 255]);
+		.setColor([75, 75, 75]);
 
 	message.channel.send(embed);
 }
