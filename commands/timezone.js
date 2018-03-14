@@ -68,7 +68,10 @@ var timesComputed = {
 }
 
 exports.run = (bot, message, args) => {
-	let [user, time] = args;
+	let [] = args;
+	let user = args.slice(0,-1).join(" ");
+	let time = args.slice(-1);
+	console.log(args, user, time);
 	// grab nickname of command issuer
 	var nickname = message.author.lastMessage.member.nickname;
 	var username = message.author.username;
