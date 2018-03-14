@@ -4,7 +4,7 @@
 		"link2": "https://oddlogic.bandcamp.com",
 		"link3": "https://twitter.com/oddlogic",
 		"link4": "https://instagram.com/agohorel",
-		"timezone": "**timezone:** EST",
+		"timezone": "**timezone:** EST (UTC-5)",
 		"rawTimezone": "EST",
 		"image": "https://i1.sndcdn.com/avatars-000127401225-hm72xl-t500x500.jpg"
 	},
@@ -13,7 +13,7 @@
 		"link2": "https://soundcloud.com/woulgmusic",
 		"link3": "https://woulg.bandcamp.com/",
 		"link4": "https://twitter.com/gregtemp",
-		"timezone": "**timezone:** EST",
+		"timezone": "**timezone:** EST (UTC-5)",
 		"rawTimezone": "EST",
 		"image": "https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/18672968_1338412082909125_8081802684322556645_o.jpg?oh=e18ea6d268879d9f7d4c852aecc774f0&oe=5B10DDA1"
 	},
@@ -23,8 +23,52 @@
 		"link3": "https://punctii.bandcamp.com",
 		"link4": "https://lbardsley.com",
 		"link5": "https://twitter.com/laurabardsley_",
-		"timezone": "**timezone:** EST",
+		"timezone": "**timezone:** EST (UTC-5)",
 		"rawTimezone": "EST",
 		"image": "https://i1.sndcdn.com/avatars-000337833334-ixpv3i-t500x500.jpg"
+	},
+	"abissus voide": {
+		"link1": "https://vaeprism.com/",
+		"link2": "https://vaeprism.bandcamp.com/",
+		"link3": "https://soundcloud.com/vaeprism/",
+		"link4": "https://www.youtube.com/c/Vaeprism/",
+		"link5": "https://www.facebook.com/vaeprism/",
+		"link6": "https://www.instagram.com/vaeprism/",
+		"link7": "https://twitter.com/Vaeprism/",
+		"link8": "https://ello.co/vaeprism",
+		"link9": "https://vimeo.com/vaeprism/",
+		"timezone": "**timezone:** AEDT (UTC+11)",
+		"rawTimezone": "AEDT",
+		"image": "https://scontent.fphl2-4.fna.fbcdn.net/v/t31.0-8/15304143_1060997680677183_3864631322629266762_o.jpg?oh=b809d92fd18a5a8235232cbba31eaecd&oe=5B345716"
+	},
+	"sundog": {
+		"link1": "https://soundcloud.com/thirdoptic",
+		"link2": "https://www.facebook.com/sundogillionairemusic/",
+		"timezone": "**timezone:** AEDT (UTC+11)",
+		"rawTimezone": "AEDT",
+		"image": "https://scontent.fphl2-4.fna.fbcdn.net/v/t1.0-9/10152639_10152041509826546_92161869_n.jpg?oh=37c9e3312e5167e6fcbd96dc94eb9af5&oe=5B417352"
+	},
+	"mannaz230": {
+		"link1": "https://www.eoghanroche.com/",
+		"link2": "https://twitter.com/Mannaz230",
+		"timezone": "**timezone:** UTC",
+		"rawTimezone": "UTC",
+		"image": "https://pbs.twimg.com/profile_images/933109421701558272/4iZY-sXc_400x400.jpg"
+	},
+	"hlessi": {
+		"link1": "https://soundcloud.com/hlessimusic",
+		"link2": "https://twitter.com/Hlessi_music",
+		"timezone": "**timezone:** PST (UTC-8)",
+		"rawTimezone": "AEDT",
+		"image": "https://pbs.twimg.com/profile_images/849356737605926917/s_M_z-ad_400x400.jpg"
+	},
+	"noizel": {
+		"link1": "https://vimeo.com/192718069/b8b5df40a7",
+		"link2": "https://vimeo.com/244103169/0c953d69d6",
+		"link2": "https://vimeo.com/192578553/46b42d2428",
+		"timezone": "**timezone:** CST (UTC-6)",
+		"rawTimezone": "CST",
+		"image": ""
 	}
 }
+
