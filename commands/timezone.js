@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const directory = require("../directory.json");
 var theirTimezoneValue, yourTimezoneValue, theirTimezone, yourTimezone,
-	computedTimeKey, answer, timezoneList = [], timezoneDiff;
+	computedTimeKey, answer, timezoneList = [], timezoneDiff, direction;
 
 var timezones = {
 	UTC: 0,
@@ -56,9 +56,11 @@ exports.run = (bot, message, args) => {
 	// account for "negative time" - loop back around the clock
 	if (theirTimezoneValue > yourTimezoneValue){
 		computedTimeKey = timesRaw[time] + (24 - timezoneDiff);
+		direction = "hours ahead"
 	} 
 	else {
 		computedTimeKey = timesRaw[time] + timezoneDiff;
+		direction = "hours behind";
 	}
 
 	// account for hours over 23 (loop around)
@@ -68,7 +70,7 @@ exports.run = (bot, message, args) => {
 
 	answer = timesComputed[computedTimeKey];
 
-	message.channel.send(`${time} for ${user} (${theirTimezone}) is ${answer} for you, ${message.author} (${yourTimezone})`);
+	message.channel.send(`${time} for ${user} (${theirTimezone}, ${timezoneDiff} ${direction}) is **${answer}** for you, ${message.author} (${yourTimezone})`);
 	timezoneList = [];
 }
 
