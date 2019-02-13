@@ -28,7 +28,7 @@ exports.run = (bot, message, args) => {
 
 	setTimeout(function(){
 		message.channel.bulkDelete(purgeBatchSize)
-			.then(messages => console.log(`${message.author.username} purged ${messages.size} messages from #${message.channel.name}`))
+			.then(messages => console.log(`${message.member.displayName} purged ${messages.size} messages from #${message.channel.name}`))
 			.catch(console.error);
 		timer = 500;	
 	}, timer);

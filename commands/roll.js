@@ -18,11 +18,11 @@ exports.run = (bot, message, args) => {
 	result = total - diff;
 
 	if (total >= diff){
-		winLossTitle = `${message.author.username}   ︻デ┳═ー   THE GAME`;
+		winLossTitle = `${message.member.displayName}   ︻デ┳═ー   THE GAME`;
 		winLossMsg = `You **won** with a result of **${result}** (score: ${total}, diff: ${diff})`;
 		color = 3394611;
 	} else {
-		winLossTitle = `THE GAME   ︻デ┳═ー   ${message.author.username}`;
+		winLossTitle = `THE GAME   ︻デ┳═ー   ${message.member.displayName}`;
 		winLossMsg = `You **lost** with a result of **${result}** (score: ${total}, diff: ${diff})`;
 		color = 13382451;
 	}

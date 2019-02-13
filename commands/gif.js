@@ -75,7 +75,7 @@ exports.run = (bot, message, args) => {
 
 	else {
 		message.channel.send({embed: {
-			title: `${message.author.username}:`,
+			title: `${message.member.displayName}:`,
 			image: {
 				url: gifs[`${gif}`]
 			} 

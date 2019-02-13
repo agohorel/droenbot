@@ -40,7 +40,7 @@ exports.run = (bot, message, args) => {
 	
 	try{
 		string = string.replace("undefined", "");
-		message.channel.send(message.author.username + ": " + string);
+		message.channel.send(message.member.displayName + ": " + string);
 	}
 
 	catch(error){

@@ -137,5 +137,5 @@ exports.run = (bot, message, args) => {
 			.setColor(selectedGameColor)
 			.setImage(selectedGameImg);
 		message.channel.send(embed);
-	}, 5000);
+	}, 3000);
 }
