@@ -1,24 +1,21 @@
 const Discord = require("discord.js");
-const directory = require("../directory.json");
 
 exports.run = (bot, message, args) => {
-	let username = args.slice(0).join(" ");
-	var string = "";
-	var index = 1;
+	let username = args.slice(0).join(" ").trim();
+	let userData = require(`../data/directory/${username}.json`);
+	let string = "";
 
-	Object.keys(directory[username]).forEach(function(key){
-		if (index <= Object.keys(directory[username]).length - 2){
-			string += directory[username][key] + "\n";
-			index++;	
-		} else {
-			return;
+	Object.keys(userData).forEach((key) => {
+		if (key !== "img" && key !== "timezone"){
+			string += `${userData[key]}\n`;
 		}
 	});
 
-	var embed = new Discord.RichEmbed()
+	let embed = new Discord.RichEmbed()
 		.setTitle(username)
-		.setImage(directory[username].image)
-		.setDescription(string)
+		.setImage(userData.img)
+		.addField("links: ", string)
+		.addField("timezone: ", userData.timezone)
 		.setColor([75, 75, 75]);
 
 	message.channel.send(embed);
