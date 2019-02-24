@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const path = require("path");
 
 exports.run = (bot, message, args) => {
-	let username = args.slice(0).join(" ").trim();
+	let username = args.slice(0).join(" ").trim().toLowerCase();
 	let myPath = path.resolve(__dirname, "../" ,"data/directory");
 	let userData = require(path.join(myPath, `/${username}.json`));
 	let string = "";
