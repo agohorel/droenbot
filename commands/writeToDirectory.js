@@ -3,10 +3,10 @@ const fs = require("fs");
 const path = require("path");
 
 exports.run = (bot, message, args) => {
+	let myPath = path.resolve(__dirname, "../" ,"data/directory");
 	let imgLink = null;
 	let timezone = null;
 	let userData = {};
-	let myPath = path.resolve(__dirname, "../" ,"data/directory");
 
 	for (let i = 0; i < args.length; i++){
 		if (args[i].indexOf("timezone:") > -1){
@@ -33,6 +33,6 @@ exports.run = (bot, message, args) => {
 	userData.timezone = timezone;
 
 	fs.writeFile(path.join(myPath, `${message.member.displayName}.json`), JSON.stringify(userData, null, 2), (err) => {
-		err ? console.log(err) : console.log("wrote file");	
+		err ? console.log(err) : console.log("wrote file");
 	});
 }
