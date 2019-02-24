@@ -32,7 +32,7 @@ exports.run = (bot, message, args) => {
 	userData.img = imgLink;
 	userData.timezone = timezone;
 
-	fs.writeFile(path.join(myPath, `${message.member.displayName}.json`), JSON.stringify(userData, null, 2), (err) => {
+	fs.writeFile(path.join(myPath, `${message.member.displayName.toLowerCase()}.json`), JSON.stringify(userData, null, 2), (err) => {
 		err ? console.log(err) : console.log("wrote file");
 	});
 }
