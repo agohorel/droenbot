@@ -9,6 +9,9 @@ exports.run = (bot, message, args) => {
 	let userData = {};
 
 	for (let i = 0; i < args.length; i++){
+		// trim off accidental newlines if user hits return when entering data
+		args[i] = args[i].trim();
+
 		if (args[i].indexOf("timezone:") > -1){
 			// trim "timezone:" tag off
 			timezone = args[i].substring(9, args[i].length);
