@@ -11,7 +11,11 @@ exports.run = (bot, message, args) => {
 		convertHzToMs(value);
 	}
 
-	message.channel.send(result);
+	if (result.indexOf("NaN") > -1){
+		message.channel.send("invalid syntax provided. please put a space between the value and the unit. \ngood input: `!convert_ms_hz 125 ms` \nbad input: `!convert_ms_hz 125ms`");
+	} else {
+		message.channel.send(result);
+	}	
 }
 
 function convertMsToHz(value){
