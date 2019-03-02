@@ -48,8 +48,14 @@ function selectChallenge(myPath, message){
 	let numChallenges = challengeData.challenges.length;
 	let randomIndex = Math.floor(Math.random() * numChallenges);
 	let selectedChallenge = challengeData.challenges[randomIndex];
-	message.channel.send(`the selected challenge is: ${selectedChallenge}`);
-	removeChallenge(myPath, message, challengeData, randomIndex);
+
+	// handle cases where list might be empty or corrupted
+	if (selectedChallenge === undefined || selectedChallenge === null){
+		message.reply(`faulty challenge selected. challenge's value is: \`${selectedChallenge}\``);
+	} else {
+		message.channel.send(`the selected challenge is: ${selectedChallenge}`);
+		removeChallenge(myPath, message, challengeData, randomIndex);
+	}
 }
 
 function removeChallenge(myPath, message, challengeData, index){
@@ -62,7 +68,7 @@ function updateChallenges(myPath, message, challengeData){
 		if (!err){
 			message.reply("updated challenges file.");
 		} else {
-			message.reply("filed to update challenges file.");
+			message.reply("failed to update challenges file.");
 		}
 	});	
 }
