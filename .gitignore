@@ -49,4 +49,4 @@ config.json
 
 node_modules/*
 
-data/directory/*
+data/*
