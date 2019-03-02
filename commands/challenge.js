@@ -14,6 +14,8 @@ exports.run = (bot, message, args) => {
 
 		if (args[0] === "select"){
 			selectChallenge(myPath, message);
+		} else {
+			message.reply("sorry, you only have permission to use the `list` flag. ex. `!challenge list`");
 		}
 	}
 	// public route
