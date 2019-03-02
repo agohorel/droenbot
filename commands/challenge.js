@@ -4,7 +4,7 @@ const path = require("path");
 
 exports.run = (bot, message, args) => {
 	let modRole = message.guild.roles.find(role => role.name === "mod");
-	let newChallenges = args.slice(1);
+	let newChallenges = args.slice(1).join(" ").split("\n");
 	const myPath = path.resolve(__dirname, "../" ,"data/challenges");
 
 	// admin route
@@ -93,10 +93,11 @@ function updateChallenges(myPath, message, challengeData){
 }
 
 function addChallenges(myPath, message, newChallenges){
-	let challenges = JSON.parse(readChallenges(myPath)).challenges;
+	let challenges = JSON.parse(readChallenges(myPath));
 
 	newChallenges.forEach((newChallenge) => {
-		challenges.push(newChallenge);
+		// second "challenges" refers to the property challenges inside the json file
+		challenges.challenges.push(newChallenge);
 	});
 
 	updateChallenges(myPath, message, challenges);
