@@ -1,1 +1,15 @@
-{"challenges":["challenge3","challenge4"]}
+{
+  "challenges": [
+    "genre challenge: breakcore",
+    "genre challenge: dub",
+    "make an entire track with 3osc/analog",
+    "make a track in an odd time signature",
+    "make a track in an absurdly slow or fast tempo",
+    "make a track with no external/mixer effects",
+    "use only the provided sample to create a whole track",
+    "everyone cover the same song",
+    "make a track with no drums",
+    "make a track with only drums",
+    "use that thing you feel guilty for not using enough"
+  ]
+}

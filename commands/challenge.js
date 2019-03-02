@@ -53,7 +53,16 @@ function selectChallenge(myPath, message){
 	if (selectedChallenge === undefined || selectedChallenge === null){
 		message.reply(`faulty challenge selected. challenge's value is: \`${selectedChallenge}\``);
 	} else {
-		message.channel.send(`the selected challenge is: ${selectedChallenge}`);
+		// message.channel.send(`the selected challenge is: ${selectedChallenge}`);
+		
+		let selectedChallengeEmbed = new Discord.RichEmbed()
+			.setTitle("this month's challenge is:")
+			.setDescription(selectedChallenge)
+			.setFooter("submissions are due on the first of next month")
+			.setColor([150, 150, 150]);
+		
+		message.channel.send(selectedChallengeEmbed);
+
 		removeChallenge(myPath, message, challengeData, randomIndex);
 	}
 }
