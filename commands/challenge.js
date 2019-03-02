@@ -8,20 +8,20 @@ exports.run = (bot, message, args) => {
 
 	// admin route
  	if (message.member.roles.has(modRole.id)) {
-		if (args[0] === "list"){
+		if (args[0] === "list" || args[0] === undefined || args[0] === null){
 			listChallenges(myPath, message);
 		}
 
 		if (args[0] === "select"){
 			selectChallenge(myPath, message);
-		} else {
-			message.reply("sorry, you only have permission to use the `list` flag. ex. `!challenge list`");
 		}
 	}
 	// public route
 	else {
-		if (args[0] === "list"){
+		if (args[0] === "list" || args[0] === undefined || args[0] === null){
 			listChallenges(myPath, message);
+		} else {
+			message.reply("sorry, you only have permission to use the `list` flag. ex. `!challenge list`");
 		}
 	}
 }
