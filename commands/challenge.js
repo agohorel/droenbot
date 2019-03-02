@@ -4,6 +4,7 @@ const path = require("path");
 
 exports.run = (bot, message, args) => {
 	let modRole = message.guild.roles.find(role => role.name === "mod");
+	let newChallenges = args.slice(1);
 	const myPath = path.resolve(__dirname, "../" ,"data/challenges");
 
 	// admin route
@@ -14,6 +15,14 @@ exports.run = (bot, message, args) => {
 
 		if (args[0] === "select"){
 			selectChallenge(myPath, message);
+		}
+
+		if (args[0] === "add"){
+			if (newChallenges !== undefined && newChallenges.length > 0){
+				addChallenges(myPath, message, newChallenges);
+			} else {
+				message.reply("unable to process command: no challenges provided.");
+			}
 		}
 	}
 	// public route
@@ -55,8 +64,7 @@ function selectChallenge(myPath, message){
 	if (selectedChallenge === undefined || selectedChallenge === null){
 		message.reply(`faulty challenge selected. challenge's value is: \`${selectedChallenge}\``);
 	} else {
-		// message.channel.send(`the selected challenge is: ${selectedChallenge}`);
-		
+
 		let selectedChallengeEmbed = new Discord.RichEmbed()
 			.setTitle("this month's challenge is:")
 			.setDescription(selectedChallenge)
@@ -82,4 +90,14 @@ function updateChallenges(myPath, message, challengeData){
 			message.reply("failed to update challenges file.");
 		}
 	});	
+}
+
+function addChallenges(myPath, message, newChallenges){
+	let challenges = JSON.parse(readChallenges(myPath)).challenges;
+
+	newChallenges.forEach((newChallenge) => {
+		challenges.push(newChallenge);
+	});
+
+	updateChallenges(myPath, message, challenges);
 }
