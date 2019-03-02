@@ -28,7 +28,6 @@ function listChallenges(myPath, message){
 	let challengeData = JSON.parse(readChallenges(myPath));
 	let displayString = "";
 	challengeData.challenges.forEach((challenge) => {
-		console.log(challenge);
 		displayString += `${challenge}\n`;
 	});
 
@@ -49,10 +48,16 @@ function selectChallenge(myPath, message){
 	let numChallenges = challengeData.challenges.length;
 	let randomIndex = Math.floor(Math.random() * numChallenges);
 	let selectedChallenge = challengeData.challenges[randomIndex];
-
 	message.channel.send(`the selected challenge is: ${selectedChallenge}`);
+	removeChallenge(myPath, message, challengeData, randomIndex);
 }
 
-function removeChallenge(challenge){
+function removeChallenge(myPath, message, challengeData, index){
+	challengeData.challenges.splice(index, 1);
+	updateChallenges(myPath, message, challengeData);
+}
 
+function updateChallenges(myPath, message, challengeData){
+	fs.writeFileSync(path.join(myPath, "challengeList.json"), JSON.stringify(challengeData));
+	message.channel.send("updated challenges file.");
 }
