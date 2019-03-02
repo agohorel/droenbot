@@ -58,6 +58,11 @@ function removeChallenge(myPath, message, challengeData, index){
 }
 
 function updateChallenges(myPath, message, challengeData){
-	fs.writeFileSync(path.join(myPath, "challengeList.json"), JSON.stringify(challengeData));
-	message.channel.send("updated challenges file.");
+	fs.writeFile(path.join(myPath, "challengeList.json"), JSON.stringify(challengeData, null, 2), (err, data) => {
+		if (!err){
+			message.reply("updated challenges file.");
+		} else {
+			message.reply("filed to update challenges file.");
+		}
+	});	
 }
