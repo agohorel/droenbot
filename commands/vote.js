@@ -32,8 +32,8 @@ exports.run = async (bot, message, args) => {
     .setTitle(
       `Poll results for ${description}, created by ${message.member.displayName}`
     )
-    .addField("yeas:", `${yeas}`)
-    .addField("nays:", `${nays}`);
+    .addField("**yeas:**", `${yeas}`)
+    .addField("**nays:**", `${nays}`);
 
   message.channel.send(resultsEmbed);
 };
