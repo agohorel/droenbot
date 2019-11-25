@@ -51,47 +51,53 @@ var droenArt = `
 const issuedCommandRecently = new Set();
 
 bot.on("ready", () => {
-	console.log(droenArt.cyan);
-	bot.user.setActivity("with my code");
+  console.log(droenArt.cyan);
+  bot.user.setActivity("with my code");
 });
 
-bot.on("debug", (err) => console.info(err.grey));
-bot.on("warn", (err) => console.warn(err.yellow));
-bot.on("error", (err) => console.error(err.red));
+bot.on("debug", err => console.info(err.grey));
+bot.on("warn", err => console.warn(err.yellow));
+bot.on("error", err => console.error(err.red));
 
-bot.on("message", (message) => {
-	// check if message doesn't begin with prefix or if author is bot
-	if(!message.content.startsWith(config.prefix) || message.author.bot){
-		return;
-	}
+bot.on("message", message => {
+  // check if message doesn't begin with prefix or if author is bot
+  if (!message.content.startsWith(config.prefix) || message.author.bot) {
+    return;
+  }
 
-	// if user issued commands within the cooldown window, ignore their command and send a DM
-	if(issuedCommandRecently.has(message.author.id)){
-		message.delete();
-		message.author.send("You can only issue bot commands once every 2 seconds. Pls watch the spam.");
-		return;
-	}
+  // if user issued commands within the cooldown window, ignore their command and send a DM
+  if (issuedCommandRecently.has(message.author.id)) {
+    message.delete();
+    message.author.send(
+      "You can only issue bot commands once every 2 seconds. Pls watch the spam."
+    );
+    return;
+  }
 
-	// add user to issuedCommandRecently set
-	issuedCommandRecently.add(message.author.id);
-	// remove user from issuedCommandRecently set after cooldown
-	setTimeout(() => {
-		issuedCommandRecently.delete(message.author.id);
-	}, 2000);
+  // add user to issuedCommandRecently set
+  issuedCommandRecently.add(message.author.id);
+  // remove user from issuedCommandRecently set after cooldown
+  setTimeout(() => {
+    issuedCommandRecently.delete(message.author.id);
+  }, 1000);
 
-	// slice out arguments from command string
-	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-	// shift command out of args array, leaving just the command. toLowerCase so commands are case insensitive.
-	const command = args.shift().toLowerCase().replace("/", "");
+  // slice out arguments from command string
+  const args = message.content
+    .slice(config.prefix.length)
+    .trim()
+    .split(/ +/g);
+  // shift command out of args array, leaving just the command. toLowerCase so commands are case insensitive.
+  const command = args
+    .shift()
+    .toLowerCase()
+    .replace("/", "");
 
-	try {
-		let commandFile = require(`./commands/${command}.js`);
-		commandFile.run(bot, message, args);
-	} 
-
-	catch (err){
-		console.error(err.red);
-	}
-});	
+  try {
+    let commandFile = require(`./commands/${command}.js`);
+    commandFile.run(bot, message, args);
+  } catch (err) {
+    console.error(err.red);
+  }
+});
 
 bot.login(config.token);
