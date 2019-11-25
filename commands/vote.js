@@ -34,7 +34,8 @@ exports.run = async (bot, message, args) => {
       `Poll results for ${description}, created by ${message.member.displayName}`
     )
     .addField("**yeas:**", `${yeas}`)
-    .addField("**nays:**", `${nays}`);
+    .addField("**nays:**", `${nays}`)
+    .setColor(yeas > nays ? "#32a852" : "#a83232");
 
   message.channel.send(resultsEmbed);
 };
