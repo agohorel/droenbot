@@ -2,7 +2,8 @@ const Discord = require("discord.js");
 // const crud = require("../crud.js");
 
 exports.run = async (bot, message, args) => {
-  const description = args.join(" ");
+  const description = args.slice(0, args.length - 1).join(" ");
+  const duration = args[args.length - 1] * 60000; // express duration as minutes
   let yeas, nays;
 
   const poll = new Discord.RichEmbed()
@@ -14,7 +15,7 @@ exports.run = async (bot, message, args) => {
   const filter = reaction =>
     reaction.emoji.name === "✅" || reaction.emoji.name === "❎";
 
-  let results = await pollMessage.awaitReactions(filter, { time: 10000 });
+  let results = await pollMessage.awaitReactions(filter, { time: duration });
 
   try {
     yeas = await results.get("✅").count;
