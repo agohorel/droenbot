@@ -35,7 +35,15 @@ exports.run = async (bot, message, args) => {
     )
     .addField("**yeas:**", `${yeas}`)
     .addField("**nays:**", `${nays}`)
-    .setColor(yeas > nays ? "#32a852" : "#a83232");
+    .setColor(
+      yeas > nays
+        ? "#32a852"
+        : nays > yeas
+        ? "#a83232"
+        : yeas === nays
+        ? "#d9760d"
+        : "#FFFFFF"
+    );
 
   message.channel.send(resultsEmbed);
 };
