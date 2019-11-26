@@ -16,8 +16,8 @@ exports.run = async (bot, message, args) => {
 
   let results = await pollMessage.awaitReactions(filter, { time: duration });
 
-  let yeas = getVotes("✅");
-  let nays = getVotes("❎");
+  let yeas = getVotes("✅", results);
+  let nays = getVotes("❎", results);
 
   const resultsEmbed = new Discord.RichEmbed()
     .setTitle(
@@ -38,9 +38,9 @@ exports.run = async (bot, message, args) => {
   message.channel.send(resultsEmbed);
 };
 
-function getVotes(emoji){
+function getVotes(emoji, results) {
   try {
-    return await results.get(emoji).count;
+    return results.get(emoji).count;
   } catch (error) {
     return 0;
   }
