@@ -21,7 +21,7 @@ exports.run = async (bot, message, args) => {
 
   const resultsEmbed = new Discord.RichEmbed()
     .setTitle(
-      `Results for Motion to ${description}, created by ${message.member.displayName}`
+      `Results for *Motion to ${description}*, created by ${message.member.displayName}`
     )
     .addField("**yeas:**", `${yeas}`)
     .addField("**nays:**", `${nays}`)
