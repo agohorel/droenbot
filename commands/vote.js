@@ -1,12 +1,12 @@
 const Discord = require("discord.js");
-// const crud = require("../crud.js");
+const crud = require("../crud.js");
 
 exports.run = async (bot, message, args) => {
   const description = args.slice(0, args.length - 1).join(" ");
   const duration = args[args.length - 1] * 60000; // express duration as minutes
 
   const poll = new Discord.RichEmbed()
-    .setTitle("Poll")
+    .setTitle("Motion")
     .setDescription(description);
 
   const pollMessage = await message.channel.send(poll);
@@ -21,7 +21,7 @@ exports.run = async (bot, message, args) => {
 
   const resultsEmbed = new Discord.RichEmbed()
     .setTitle(
-      `Poll results for ${description}, created by ${message.member.displayName}`
+      `Results for Motion to ${description}, created by ${message.member.displayName}`
     )
     .addField("**yeas:**", `${yeas}`)
     .addField("**nays:**", `${nays}`)
@@ -36,6 +36,8 @@ exports.run = async (bot, message, args) => {
     );
 
   message.channel.send(resultsEmbed);
+
+  crud.writeFile(`${description}.json`, "votes", { yeas, nays });
 };
 
 function getVotes(emoji, results) {
