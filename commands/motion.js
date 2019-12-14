@@ -13,6 +13,7 @@ exports.run = async (bot, message, args) => {
     const poll = new Discord.RichEmbed()
       .setTitle("Motion")
       .setDescription(description)
+      .addField("Duration", `This vote expires in ${duration} hours`)
       .addField(
         "Voting Instructions",
         "Vote by reacting to this embed with a ✅ (yea) or ❎ (nay)"
