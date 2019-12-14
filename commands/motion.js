@@ -3,8 +3,7 @@ const crud = require("../crud.js");
 
 exports.run = async (bot, message, args) => {
   const description = args.slice(0, args.length - 1).join(" ");
-  const duration = args[args.length - 1] * 1440000; // express duration in hours
-
+  const duration = args[args.length - 1] * 3600000; // express duration in hours
   if (typeof Number(args[args.length - 1]) !== "number") {
     message.channel.send(
       "Please provide a duration for the vote in minutes. \nSyntax: `!motion to [do something] [duration in hours]`"
@@ -13,7 +12,7 @@ exports.run = async (bot, message, args) => {
     const poll = new Discord.RichEmbed()
       .setTitle("Motion")
       .setDescription(description)
-      .addField("Duration", `This vote expires in ${duration} hours`)
+      .addField("Duration", `This vote expires in ${duration / 3600000} hours`)
       .addField(
         "Voting Instructions",
         "Vote by reacting to this embed with a ✅ (yea) or ❎ (nay)"
