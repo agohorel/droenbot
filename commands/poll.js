@@ -66,7 +66,9 @@ exports.run = async (bot, message, args) => {
 
     Object.keys(numberEmojis).forEach(key => {
       resultsObj[key] = getVotes(numberEmojis[key], results);
-      resultsString += `${numberEmojis[key]} : ${resultsObj[key]} votes\n`;
+      if (optionsObj[key]) {
+        resultsString += `${numberEmojis[key]} = ${optionsObj[key]} : **${resultsObj[key]} vote(s)**\n`;
+      }
     });
 
     const resultsEmbed = new Discord.RichEmbed()
