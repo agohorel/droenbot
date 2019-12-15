@@ -65,9 +65,12 @@ exports.run = async (bot, message, args) => {
       resultsString = "";
 
     Object.keys(numberEmojis).forEach(key => {
-      resultsObj[key] = getVotes(numberEmojis[key], results);
+      resultsObj[key] = {
+        option: optionsObj[key],
+        count: getVotes(numberEmojis[key], results)
+      };
       if (optionsObj[key]) {
-        resultsString += `${numberEmojis[key]} = ${optionsObj[key]} : **${resultsObj[key]} vote(s)**\n`;
+        resultsString += `${numberEmojis[key]} = ${optionsObj[key]} : **${resultsObj[key].count} vote(s)**\n`;
       }
     });
 
