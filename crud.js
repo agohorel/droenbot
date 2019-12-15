@@ -7,13 +7,12 @@ const writeFile = (fileName, folderName, data) => {
     fs.writeFile(filePath, JSON.stringify(data, null, 2), err => {
       err
         ? console.error(`error saving file: ${err}`)
-        : console.log(`successfully saved file to ${path}`);
+        : console.log(`successfully saved file to ${filePath}`);
     });
   } catch (err) {
     console.error(err);
   }
 };
-
 
 // @TODO add param for setting folder to search from
 const readFile = fileName => {
