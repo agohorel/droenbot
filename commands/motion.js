@@ -23,7 +23,7 @@ exports.run = async (bot, message, args) => {
     const motionID = args[1] - 1;
     const files = await crud.readFolder("votes/motions");
     let selectedFile = files[motionID];
-    let data = await crud.readFile("votes", selectedFile);
+    let data = await crud.readFile("votes/motions", selectedFile);
     data = JSON.parse(data.toString());
 
     const pollResults = new Discord.RichEmbed()
