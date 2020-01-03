@@ -3,7 +3,7 @@ const crud = require("../crud.js");
 
 exports.run = async (bot, message, args) => {
   if (args.length === 1 && args[0] === "list") {
-    const files = await crud.readFolder("votes");
+    const files = await crud.readFolder("votes/motions");
     let fileList = "";
 
     files.map(
@@ -21,14 +21,17 @@ exports.run = async (bot, message, args) => {
     message.channel.send(motionList);
   } else if (args.length === 2 && args[0] === "list") {
     const motionID = args[1] - 1;
-    const files = await crud.readFolder("votes");
+    const files = await crud.readFolder("votes/motions");
     let selectedFile = files[motionID];
     let data = await crud.readFile("votes", selectedFile);
     data = JSON.parse(data.toString());
 
     const pollResults = new Discord.RichEmbed()
       .setTitle(
-        `Results for *Motion ${selectedFile.substring(0, selectedFile.length - 5)}*:`
+        `Results for *Motion ${selectedFile.substring(
+          0,
+          selectedFile.length - 5
+        )}*:`
       )
       .addField("Yeas:", data.yeas)
       .addField("Nays:", data.nays)
@@ -94,7 +97,11 @@ exports.run = async (bot, message, args) => {
 
       message.channel.send(resultsEmbed);
 
-      crud.writeFile(`${description}.json`, "votes", { yeas, nays });
+      crud.writeFile(`${description}.json`, "votes/motions", {
+        yeas,
+        nays,
+        createdBy: message.member.displayName
+      });
     }
   }
 };
