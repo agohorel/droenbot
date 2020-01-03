@@ -19,6 +19,30 @@ exports.run = async (bot, message, args) => {
       .addField("Motions:", fileList);
 
     message.channel.send(motionList);
+  } else if (args.length === 2 && args[0] === "list") {
+    const motionID = args[1] - 1;
+    const files = await crud.readFolder("votes");
+    let selectedFile = files[motionID];
+    let data = await crud.readFile("votes", selectedFile);
+    data = JSON.parse(data.toString());
+
+    const pollResults = new Discord.RichEmbed()
+      .setTitle(
+        `Results for *Motion ${selectedFile.substring(0, selectedFile.length - 5)}*:`
+      )
+      .addField("Yeas:", data.yeas)
+      .addField("Nays:", data.nays)
+      .setColor(
+        data.yeas > data.nays
+          ? "#32a852"
+          : data.nays > data.yeas
+          ? "#a83232"
+          : data.yeas === data.nays
+          ? "#d9760d"
+          : "#FFFFFF"
+      );
+
+    message.channel.send(pollResults);
   } else {
     const description = args.slice(0, args.length - 1).join(" ");
     const duration = args[args.length - 1] * 3600000; // express duration in hours
