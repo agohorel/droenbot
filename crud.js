@@ -27,16 +27,14 @@ const readFile = fileName => {
 };
 
 // @TODO needs to deal w/ nested folders
-const readFolder = folderName => {
-  const folderPath = path.join(__dirname, folderName);
+const readFolder = async folderName => {
+  const folderPath = path.join(__dirname, "data", folderName);
 
-  try {
+  return new Promise((resolve, reject) => {
     fs.readdir(folderPath, (err, files) => {
-      return err ? console.error(`error reading folder ${folderPath}`) : files;
+      err ? reject(err) : resolve(files);
     });
-  } catch (err) {
-    console.error(err);
-  }
+  });
 };
 
 const updateFile = () => {};
