@@ -44,7 +44,7 @@ exports.run = async (bot, message, args) => {
         "Vote by reacting to this embed with a number emoji corresponding to the poll option"
       );
 
-    // message.channel.send("@here please vote below!");
+    message.channel.send("@glitch.cool please vote below!");
     const pollMessage = await message.channel.send(poll);
 
     const filter = reaction => {

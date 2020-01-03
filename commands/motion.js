@@ -63,7 +63,7 @@ exports.run = async (bot, message, args) => {
           "Vote by reacting to this embed with a ✅ (yea) or ❎ (nay)"
         );
 
-      message.channel.send("@everyone please vote below!");
+      message.channel.send("@glitch.cool please vote below!");
       const pollMessage = await message.channel.send(poll);
 
       const filter = reaction =>
