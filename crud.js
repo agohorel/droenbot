@@ -15,15 +15,14 @@ const writeFile = (fileName, folderName, data) => {
 };
 
 // @TODO add param for setting folder to search from
-const readFile = fileName => {
-  const filePath = path.join(__dirname, filename);
-  try {
+const readFile = async (folderName, fileName) => {
+  const filePath = path.join(__dirname, "data", folderName, fileName);
+
+  return new Promise((resolve, reject) => {
     fs.readFile(filePath, (err, data) => {
-      return err ? console.error(err) : data;
+      err ? reject(err) : resolve(data);
     });
-  } catch (err) {
-    console.error(err);
-  }
+  });
 };
 
 // @TODO needs to deal w/ nested folders
