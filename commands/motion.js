@@ -31,7 +31,7 @@ exports.run = async (bot, message, args) => {
         `Results for *Motion ${selectedFile.substring(
           0,
           selectedFile.length - 5
-        )}*:`
+        )}*, created by ${data.createdBy}:`
       )
       .addField("Yeas:", data.yeas)
       .addField("Nays:", data.nays)
