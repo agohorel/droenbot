@@ -98,9 +98,10 @@ exports.run = async (bot, message, args) => {
       message.channel.send(resultsEmbed);
 
       crud.writeFile(`${description}.json`, "votes/motions", {
+        title: description,
+        createdBy: message.member.displayName,
         yeas,
-        nays,
-        createdBy: message.member.displayName
+        nays
       });
     }
   }
